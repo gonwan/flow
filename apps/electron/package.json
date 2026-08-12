@@ -1,0 +1,86 @@
+{
+  "name": "@flow/electron",
+  "description": "FlowOSS desktop application",
+  "author": "pacexy <pacexy@gmail.com>",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "pnpm --filter @flow/reader dev & pnpm run --filter @flow/electron ts:dev",
+    "ts:dev": "ts-node-dev --respawn --transpile-only --no-notify src/main.ts",
+    "dev:renderer": "pnpm --filter @flow/reader dev",
+    "build:renderer": "pnpm --filter @flow/reader run build:standalone",
+    "build:ts": "tsc -p tsconfig.json",
+    "build": "pnpm run build:renderer && pnpm run build:ts && electron-builder --publish never",
+    "start": "electron ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "25.9.8",
+    "cross-env": "^7.0.3",
+    "electron-builder": "^24.7.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.2.0"
+  },
+  "build": {
+    "appId": "com.pacexy.flow",
+    "productName": "flowoss-app",
+    "electronVersion": "25.9.8",
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "../reader/public",
+      "output": "dist_electron"
+    },
+    "extraResources": [
+      {
+        "from": "../reader/.next/standalone",
+        "to": "standalone",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../reader/public",
+        "to": "standalone/apps/reader/public",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../reader/.next/static",
+        "to": "standalone/apps/reader/.next/static",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "icon": "icons/512.png",
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "artifactName": "${productName}-v${version}-mac-${arch}.${ext}"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ],
+      "artifactName": "${productName}-v${version}-win-${arch}.${ext}"
+    },
+    "nsis": {
+      "artifactName": "${productName}-v${version}-win-${arch}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "zip"
+      ],
+      "artifactName": "${productName}-v${version}-linux-${arch}.${ext}"
+    }
+  }
+}

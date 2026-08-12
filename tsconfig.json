@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@flow/reader/*": ["apps/reader/src/*"],
+      "@flow/reader/locales": ["apps/reader/locales/index.ts"],
       "@flow/internal": ["packages/internal/src/index.ts"],
       "@flow/epubjs/*": ["packages/epubjs/*"]
     }

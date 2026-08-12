@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "cross-env RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED=false next dev -p 7127",
     "build": "next build",
+    "build:standalone": "cross-env DOCKER=1 next build",
     "analyze": "cross-env ANALYZE=true next build",
     "start": "next start",
     "lint": "next lint"
