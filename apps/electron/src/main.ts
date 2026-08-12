@@ -156,10 +156,9 @@ function waitForServer(
 }
 
 function getIconPath() {
-  if (app.isPackaged)
-    return path.join(process.resourcesPath, 'icons', '512.png')
   return path.join(
-    process.cwd(),
+    process.resourcesPath,
+    'standalone',
     'apps',
     'reader',
     'public',

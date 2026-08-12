@@ -24,7 +24,8 @@
   },
   "build": {
     "appId": "com.pacexy.flow",
-    "productName": "flowoss-app",
+    "executableName": "flowoss-app",
+    "productName": "FlowOSS App",
     "electronVersion": "25.9.8",
     "files": [
       "dist/**/*",
@@ -32,7 +33,7 @@
     ],
     "directories": {
       "buildResources": "../reader/public",
-      "output": "dist_electron"
+      "output": "../../release"
     },
     "extraResources": [
       {
@@ -58,29 +59,38 @@
       }
     ],
     "icon": "icons/512.png",
-    "mac": {
-      "target": [
-        "dmg",
-        "zip"
-      ],
-      "artifactName": "${productName}-v${version}-mac-${arch}.${ext}"
-    },
     "win": {
       "target": [
-        "nsis",
-        "zip"
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
       ],
-      "artifactName": "${productName}-v${version}-win-${arch}.${ext}"
+      "artifactName": "flowoss-app-v${version}-windows-${arch}.${ext}"
     },
-    "nsis": {
-      "artifactName": "${productName}-v${version}-win-${arch}.${ext}"
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "flowoss-app-v${version}-macos-${arch}.${ext}"
     },
     "linux": {
       "target": [
-        "deb",
-        "zip"
+        {
+          "target": "tar.gz",
+          "arch": [
+            "x64"
+          ]
+        }
       ],
-      "artifactName": "${productName}-v${version}-linux-${arch}.${ext}"
+      "artifactName": "flowoss-app-v${version}-linux-${arch}.${ext}"
     }
   }
 }
