@@ -32,7 +32,7 @@
     ],
     "directories": {
       "buildResources": "../reader/public",
-      "output": "dist_electron"
+      "output": "../../release"
     },
     "extraResources": [
       {
@@ -58,27 +58,26 @@
       }
     ],
     "icon": "icons/512.png",
-    "mac": {
-      "target": [
-        "dmg",
-        "zip"
-      ],
-      "artifactName": "${productName}-v${version}-mac-${arch}.${ext}"
-    },
     "win": {
       "target": [
-        "nsis",
         "zip"
       ],
-      "artifactName": "${productName}-v${version}-win-${arch}.${ext}"
+      "artifactName": "${productName}-v${version}-windows-${arch}.${ext}"
     },
-    "nsis": {
-      "artifactName": "${productName}-v${version}-win-${arch}.${ext}"
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}-v${version}-macos-${arch}.${ext}"
     },
     "linux": {
       "target": [
-        "deb",
-        "zip"
+        "tar.gz"
       ],
       "artifactName": "${productName}-v${version}-linux-${arch}.${ext}"
     }
